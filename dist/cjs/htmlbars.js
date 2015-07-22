@@ -1,0 +1,18 @@
+exports.__esModule = true;
+/*
+ * @overview  HTMLBars
+ * @copyright Copyright 2011-2014 Tilde Inc. and contributors
+ * @license   Licensed under MIT license
+ *            See https://raw.githubusercontent.com/tildeio/htmlbars/master/LICENSE
+ * @version   v0.14.0
+ */
+
+// Break cycles in the module loader.
+
+require("./htmlbars-syntax");
+
+var _htmlbarsCompilerCompiler = require("./htmlbars-compiler/compiler");
+
+exports.compile = _htmlbarsCompilerCompiler.compile;
+exports.compileSpec = _htmlbarsCompilerCompiler.compileSpec;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImh0bWxiYXJzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O1FBU08sbUJBQW1COzt3Q0FLbkIsOEJBQThCOztRQUduQyxPQUFPLDZCQUxQLE9BQU87UUFNUCxXQUFXLDZCQUxYLFdBQVciLCJmaWxlIjoiaHRtbGJhcnMuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogQG92ZXJ2aWV3ICBIVE1MQmFyc1xuICogQGNvcHlyaWdodCBDb3B5cmlnaHQgMjAxMS0yMDE0IFRpbGRlIEluYy4gYW5kIGNvbnRyaWJ1dG9yc1xuICogQGxpY2Vuc2UgICBMaWNlbnNlZCB1bmRlciBNSVQgbGljZW5zZVxuICogICAgICAgICAgICBTZWUgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3RpbGRlaW8vaHRtbGJhcnMvbWFzdGVyL0xJQ0VOU0VcbiAqIEB2ZXJzaW9uICAgVkVSU0lPTl9TVFJJTkdfUExBQ0VIT0xERVJcbiAqL1xuXG4vLyBCcmVhayBjeWNsZXMgaW4gdGhlIG1vZHVsZSBsb2FkZXIuXG5pbXBvcnQgXCIuL2h0bWxiYXJzLXN5bnRheFwiO1xuXG5pbXBvcnQge1xuICBjb21waWxlLFxuICBjb21waWxlU3BlY1xufSBmcm9tIFwiLi9odG1sYmFycy1jb21waWxlci9jb21waWxlclwiO1xuXG5leHBvcnQge1xuICBjb21waWxlLFxuICBjb21waWxlU3BlY1xufTtcbiJdfQ==

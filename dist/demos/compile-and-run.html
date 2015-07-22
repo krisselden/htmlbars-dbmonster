@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>HTMLBars example</title>
+  </head>
+  <body>
+    <label>
+      Data
+      <textarea id="data">{"name": "Bob"}</textarea>
+    </label>
+
+    <label>
+      Template
+      <textarea id="template">Howdy {{name}}</textarea>
+    </label>
+
+    <label>
+      Options
+      <textarea id="options">{ "disableComponentGeneration": true }</textarea>
+    </label>
+
+    <label>
+      <input id="skip-render" type="checkbox">
+      Skip render?
+    </label>
+
+    <button id="run-template">Compile and Render</button>
+    <hr>
+    <div id="output"></div>
+
+    <script src="../assets/loader.js"></script>
+    <script src="../amd/dom-helper.amd.js"></script>
+    <script src="../amd/htmlbars-compiler.amd.js"></script>
+    <script src="../amd/htmlbars-runtime.amd.js"></script>
+    <script>
+      var button     = document.getElementById('run-template'),
+          dataarea   = document.getElementById('data'),
+          textarea   = document.getElementById('template'),
+          output     = document.getElementById('output'),
+          skipRender = document.getElementById('skip-render'),
+          options    = document.getElementById('options');
+
+      var compiler    = requireModule('htmlbars-compiler'),
+          DOMHelper   = requireModule('dom-helper').default,
+          hooks       = requireModule('htmlbars-runtime').hooks,
+          render      = requireModule('htmlbars-runtime').render;
+
+      var templateSource = localStorage.getItem('templateSource');
+      var data = localStorage.getItem('templateData');
+      var shouldRender = localStorage.getItem('shouldRender');
+
+      if (templateSource) {
+        textarea.value = templateSource;
+      }
+
+      if (data) {
+        dataarea.value = data;
+      }
+
+      if (shouldRender === "false") {
+        skipRender.checked = true;
+      }
+
+      button.addEventListener('click', function() {
+        var source = textarea.value,
+            data = dataarea.value,
+            shouldRender = !skipRender.checked,
+            compileOptions;
+
+        localStorage.setItem('templateSource', source);
+        localStorage.setItem('templateData', data);
+        localStorage.setItem('shouldRender', shouldRender);
+
+        try {
+          data = JSON.parse(data);
+        } catch(e) {
+          data = {};
+        }
+
+        try {
+          compileOptions = JSON.parse(options.value);
+        } catch(e) {
+          compileOptions = {};
+        }
+
+        try {
+          var templateSpec = compiler.compileSpec(source, compileOptions);
+          output.innerHTML = '<pre><code>' + templateSpec + '</code></pre>';
+
+          if (shouldRender) {
+            var template = compiler.template(templateSpec);
+
+            var env = { dom: new DOMHelper(), hooks: hooks, helpers: {} };
+
+            var scope = hooks.createFreshScope();
+
+            hooks.bindSelf(env, scope, data);
+
+            var dom = render(template, env, scope, { contextualElement: output }).fragment;
+
+            output.innerHTML += '<hr><pre><code>' + JSON.stringify(data) + '</code></pre><hr>';
+            output.appendChild(dom);
+          }
+        } catch(e) {
+          output.innerHTML += 'Failure to run template: '+e.message;
+          throw(e);
+        }
+      });
+    </script>
+  </body>
+</html>

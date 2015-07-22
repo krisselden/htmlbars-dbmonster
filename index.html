@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>HTMLBars DBMonster</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="dist/assets/loader.js"></script>
+  <script src="dist/amd/dom-helper.amd.js"></script>
+  <script src="dist/amd/htmlbars-runtime.amd.js"></script>
+  <script src="dist/amd/htmlbars-util.amd.js"></script>
+  <script src="./template.js"></script>
+  <script src="./get-databases.js"></script>
+  <script src="./dbmonster.js"></script>
+</head>
+<body>
+
+<script>
+/* global require: false */
+
+  var ROWS = 100;
+  var TIMEOUT = 0;
+
+  var dbmonster = require('dbmonster');
+  var getDatabases = require('get-databases');
+
+  document.body.appendChild(dbmonster.render(getDatabases(ROWS)));
+
+  function rerender() {
+    dbmonster.rerender(getDatabases(ROWS));
+    scheduleRerender();
+  }
+
+  function scheduleRerender() {
+    setTimeout(rerender, TIMEOUT);
+  }
+
+  scheduleRerender();
+
+</script>
+</body>
+</html>

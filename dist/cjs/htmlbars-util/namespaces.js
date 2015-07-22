@@ -1,0 +1,23 @@
+exports.__esModule = true;
+exports.getAttrNamespace = getAttrNamespace;
+// ref http://dev.w3.org/html5/spec-LC/namespaces.html
+var defaultNamespaces = {
+  html: 'http://www.w3.org/1999/xhtml',
+  mathml: 'http://www.w3.org/1998/Math/MathML',
+  svg: 'http://www.w3.org/2000/svg',
+  xlink: 'http://www.w3.org/1999/xlink',
+  xml: 'http://www.w3.org/XML/1998/namespace'
+};
+
+function getAttrNamespace(attrName) {
+  var namespace;
+
+  var colonIndex = attrName.indexOf(':');
+  if (colonIndex !== -1) {
+    var prefix = attrName.slice(0, colonIndex);
+    namespace = defaultNamespaces[prefix];
+  }
+
+  return namespace || null;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImh0bWxiYXJzLXV0aWwvbmFtZXNwYWNlcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO1FBU2dCLGdCQUFnQixHQUFoQixnQkFBZ0I7O0FBUmhDLElBQUksaUJBQWlCLEdBQUc7QUFDdEIsTUFBSSxFQUFFLDhCQUE4QjtBQUNwQyxRQUFNLEVBQUUsb0NBQW9DO0FBQzVDLEtBQUcsRUFBRSw0QkFBNEI7QUFDakMsT0FBSyxFQUFFLDhCQUE4QjtBQUNyQyxLQUFHLEVBQUUsc0NBQXNDO0NBQzVDLENBQUM7O0FBRUssU0FBUyxnQkFBZ0IsQ0FBQyxRQUFRLEVBQUU7QUFDekMsTUFBSSxTQUFTLENBQUM7O0FBRWQsTUFBSSxVQUFVLEdBQUcsUUFBUSxDQUFDLE9BQU8sQ0FBQyxHQUFHLENBQUMsQ0FBQztBQUN2QyxNQUFJLFVBQVUsS0FBSyxDQUFDLENBQUMsRUFBRTtBQUNyQixRQUFJLE1BQU0sR0FBRyxRQUFRLENBQUMsS0FBSyxDQUFDLENBQUMsRUFBRSxVQUFVLENBQUMsQ0FBQztBQUMzQyxhQUFTLEdBQUcsaUJBQWlCLENBQUMsTUFBTSxDQUFDLENBQUM7R0FDdkM7O0FBRUQsU0FBTyxTQUFTLElBQUksSUFBSSxDQUFDO0NBQzFCIiwiZmlsZSI6Imh0bWxiYXJzLXV0aWwvbmFtZXNwYWNlcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlZiBodHRwOi8vZGV2LnczLm9yZy9odG1sNS9zcGVjLUxDL25hbWVzcGFjZXMuaHRtbFxudmFyIGRlZmF1bHROYW1lc3BhY2VzID0ge1xuICBodG1sOiAnaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCcsXG4gIG1hdGhtbDogJ2h0dHA6Ly93d3cudzMub3JnLzE5OTgvTWF0aC9NYXRoTUwnLFxuICBzdmc6ICdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZycsXG4gIHhsaW5rOiAnaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluaycsXG4gIHhtbDogJ2h0dHA6Ly93d3cudzMub3JnL1hNTC8xOTk4L25hbWVzcGFjZSdcbn07XG5cbmV4cG9ydCBmdW5jdGlvbiBnZXRBdHRyTmFtZXNwYWNlKGF0dHJOYW1lKSB7XG4gIHZhciBuYW1lc3BhY2U7XG5cbiAgdmFyIGNvbG9uSW5kZXggPSBhdHRyTmFtZS5pbmRleE9mKCc6Jyk7XG4gIGlmIChjb2xvbkluZGV4ICE9PSAtMSkge1xuICAgIHZhciBwcmVmaXggPSBhdHRyTmFtZS5zbGljZSgwLCBjb2xvbkluZGV4KTtcbiAgICBuYW1lc3BhY2UgPSBkZWZhdWx0TmFtZXNwYWNlc1twcmVmaXhdO1xuICB9XG5cbiAgcmV0dXJuIG5hbWVzcGFjZSB8fCBudWxsO1xufVxuIl19
